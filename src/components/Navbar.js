@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-black">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          <img src="/assets/logo.jpg" alt="Peñarol" width="50" />
+          <img src="../assets/logo.jpg" alt="Peñarol" width="50" />
           Peñarol
         </Link>
         <div className="d-flex align-items-center">

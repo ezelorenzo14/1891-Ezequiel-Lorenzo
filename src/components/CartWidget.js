@@ -1,9 +1,9 @@
 // src/components/CartWidget.js
 import React from 'react';
-import { FaShoppingCart } from 'react-icons/fa'; // Usamos React Icons para el ícono del carrito
+import { FaShoppingCart } from 'react-icons/fa'; 
 
 const CartWidget = () => {
-  const itemsInCart = 3;  // Número hardcodeado de entradas en el carrito (cambiar cuando haya más funcionalidad)
+  const itemsInCart = 3; 
 
   return (
     <div className="cart-widget d-flex align-items-center">
