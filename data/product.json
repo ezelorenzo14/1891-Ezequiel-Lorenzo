@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "title": "Camiseta Peñarol",
+      "description": "Camiseta oficial del Club Atlético Peñarol.",
+      "code": "PEA-001",
+      "price": 3000,
+      "status": true,
+      "stock": 100,
+      "category": "Ropa",
+      "thumbnails": [
+        "http://localhost:8080/images/camiseta.webp"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Canguro Peñarol",
+      "description": "Canguro oficial del Club Atlético Peñarol.",
+      "code": "PEA-002",
+      "price": 2000,
+      "status": true,
+      "stock": 50,
+      "category": "Ropa",
+      "thumbnails": [
+        "http://localhost:8080/images/canguro.webp"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Short Peñarol",
+      "description": "Short oficial del Club Atlético Peñarol.",
+      "code": "PEA-003",
+      "price": 1000,
+      "status": true,
+      "stock": 200,
+      "category": "Ropa",
+      "thumbnails": [
+        "http://localhost:8080/images/short.webp"
+      ]
+    }
+  ]
+  
