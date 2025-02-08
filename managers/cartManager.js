@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const cartsFile = path.join(__dirname, '../data/carts.json');
+const cartsFile = path.join(__dirname, '../api/carts/carts.json');
 
 class CartManager {
   static async getAllCarts() {

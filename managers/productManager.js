@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const productsFile = path.join(__dirname, '../data/products.json');
+const productsFile = path.join(__dirname, '../api/product/product.json');
 
 class ProductManager {
   static async getAllProducts() {
