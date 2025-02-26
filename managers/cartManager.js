@@ -40,6 +40,43 @@ class CartManager {
     }
     return null;
   }
+
+  static async removeProductFromCart(cid, pid) {
+    const carts = await this.getAllCarts();
+    const cart = carts.find(c => c.id === cid);
+    if (cart) {
+      const updatedProducts = cart.products.filter(p => p.product !== pid);
+      cart.products = updatedProducts;
+      await fs.promises.writeFile(cartsFile, JSON.stringify(carts, null, 2));
+      return cart;
+    }
+    return null;
+  }
+
+  static async updateProductQuantity(cid, pid, quantity) {
+    const carts = await this.getAllCarts();
+    const cart = carts.find(c => c.id === cid);
+    if (cart) {
+      const productIndex = cart.products.findIndex(p => p.product === pid);
+      if (productIndex !== -1) {
+        cart.products[productIndex].quantity = quantity;
+        await fs.promises.writeFile(cartsFile, JSON.stringify(carts, null, 2));
+        return cart;
+      }
+    }
+    return null;
+  }
+
+  static async clearCart(cid) {
+    const carts = await this.getAllCarts();
+    const cart = carts.find(c => c.id === cid);
+    if (cart) {
+      cart.products = [];
+      await fs.promises.writeFile(cartsFile, JSON.stringify(carts, null, 2));
+      return cart;
+    }
+    return null;
+  }
 }
 
 module.exports = CartManager;

@@ -8,29 +8,47 @@
 <body>
     <h1>Productos en Tiempo Real</h1>
     <ul id="product-list">
+        <!-- Handlebars generará la lista inicial de productos si existe 'products' -->
         {{#each products}}
-            <li>{{this.name}} - ${{this.price}}</li>
+            <li>{{this.title}} - ${{this.price}}</li>
+            <img src="/{{this.thumbnails}}" alt="{{this.title}}" style="width: 100px; height: auto;">
         {{/each}}
     </ul>
     <a href="/">Volver</a>
 
+    <!-- Agregar la librería de Socket.IO -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
 
+        // Cuando el cliente se conecta al WebSocket
         socket.on('connect', () => {
             console.log('Conexión establecida con el servidor WebSocket');
         });
 
+        // Escuchar el evento 'updateProducts' desde el servidor
         socket.on('updateProducts', (products) => {
             const productList = document.getElementById('product-list');
             productList.innerHTML = ''; // Limpiar la lista existente
+
+            // Iterar sobre los productos y crear un nuevo li para cada uno
             products.forEach(product => {
                 const li = document.createElement('li');
-                li.textContent = `${product.name} - $${product.price}`;
+                li.textContent = `${product.title} - $${product.price}`;
+
+                
+                const img = document.createElement('img');
+                img.src = `/${product.thumbnails}`;
+                img.alt = product.title;
+                img.style.width = '100px';
+                img.style.height = 'auto';
+                
+                // Agregar el texto y la imagen al li
+                li.appendChild(img);
                 productList.appendChild(li);
             });
         });
     </script>
 </body>
 </html>
+

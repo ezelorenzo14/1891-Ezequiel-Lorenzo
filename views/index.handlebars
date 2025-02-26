@@ -9,9 +9,34 @@
     <h1>Lista de Productos</h1>
     <ul id="product-list">
         {{#each products}}
-            <li>{{this.name}} - ${{this.price}}</li>
+            <li>
+                {{this.title}} - ${{this.price}} 
+                <a href="/products/{{this.id}}">Ver detalles</a>
+                <!-- Usamos el helper getFirstThumbnail para acceder a la primera imagen -->
+                <img src="{{getFirstThumbnail this.thumbnails}}" alt="{{this.title}}" style="width: 100px; height: auto;">
+                <button onclick="addToCart({{this.id}})">Agregar al carrito</button>
+            </li>
         {{/each}}
     </ul>
-    <a href="/realtimeproducts">Ver productos en tiempo real</a>
+    
+    <div id="pagination">
+        {{#if hasPrevPage}}
+            <a href="{{prevLink}}">Página anterior</a>
+        {{/if}}
+        {{#if hasNextPage}}
+            <a href="{{nextLink}}">Página siguiente</a>
+        {{/if}}
+    </div>
+    
+    <script>
+        function addToCart(productId) {
+            // Asegúrate de que el 'cartId' esté correctamente definido en el contexto o reemplaza por un valor fijo
+            const cartId = 1; // Esto es solo un ejemplo. Asegúrate de tener un carrito real para usar.
+            fetch(`/api/carts/${cartId}/product/${productId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => alert('Producto agregado al carrito'))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>

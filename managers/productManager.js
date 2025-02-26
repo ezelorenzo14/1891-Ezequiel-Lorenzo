@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const productsFile = path.join(__dirname, '../api/product/product.json');
+const productsFile = path.join(__dirname, '../api/products/product.json');
 
 class ProductManager {
   static async getAllProducts() {
@@ -16,7 +16,7 @@ class ProductManager {
 
   static async addProduct(product) {
     const products = await this.getAllProducts();
-    product.id = products.length ? products[products.length - 1].id + 1 : 1; // Asignar un ID único
+    product.id = products.length ? products[products.length - 1].id + 1 : 1;
     products.push(product);
     await fs.promises.writeFile(productsFile, JSON.stringify(products, null, 2));
     return product;
@@ -36,7 +36,7 @@ class ProductManager {
   static async deleteProduct(pid) {
     const products = await this.getAllProducts();
     const filteredProducts = products.filter(p => p.id !== pid);
-    if (products.length === filteredProducts.length) return null; // Producto no encontrado
+    if (products.length === filteredProducts.length) return null;
     await fs.promises.writeFile(productsFile, JSON.stringify(filteredProducts, null, 2));
     return pid;
   }
